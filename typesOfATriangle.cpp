@@ -1,7 +1,6 @@
 #include<iostream>
-#include <limits>
+//#include <limits>
 #include <sstream>      // std::istringstream
-#include <string>
 #include<stdexcept>
 using namespace std;
 
@@ -19,7 +18,6 @@ float validInput()
         cout << "Not a numeric value please enter again\n";
     }
     throw std::runtime_error("reached end of input before getting a valid value!");
-
 }
 
 class triangle
