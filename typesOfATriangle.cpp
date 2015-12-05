@@ -1,9 +1,26 @@
 #include<iostream>
 #include <limits>
+#include <sstream>      // std::istringstream
+#include <string>
+#include<stdexcept>
 using namespace std;
 
 #define upperLimit 200.0
 #define lowerLimit 1.0
+
+float validInput()
+{
+    float x;
+    for (std::string line; std::getline(std::cin, line); ) {
+        std::istringstream lin(line);
+        if (lin >> x && (lin >> std::ws).eof()) {
+            return x;
+        }
+        cout << "Not a numeric value please enter again\n";
+    }
+    throw std::runtime_error("reached end of input before getting a valid value!");
+
+}
 
 class triangle
 {
@@ -14,9 +31,10 @@ class triangle
                 return true;
             return false;
         }
-        float validInput()
+        /*float validInput()
         {
             float x;
+            cout<< flush;
             cin >> x;
             while(cin.fail())
             {
@@ -26,7 +44,7 @@ class triangle
                 cin >> x;
             }
             return x;
-        }
+        }*/
         void validate() {
             for(int i = 0; i < 3; i++)  {
                 if(side[i] <= upperLimit && side[i] >= lowerLimit)
@@ -69,6 +87,7 @@ class triangle
 
 };
 
+
 void generateBoundaryValues(int bVal[])   {
     bVal[0] = lowerLimit;
     bVal[1] = lowerLimit + 1;
@@ -95,7 +114,7 @@ int main()
     generateRobustValues(rVal);
     do{
         cout<<"\nChoice: \n1.User Input\n2.Boundary Value Test Cases\n3.Robust Test Cases\n4.Exit\n";
-        cin>>ch;
+        ch = validInput();
         switch(ch)
         {
         case 1:
