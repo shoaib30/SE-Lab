@@ -1,23 +1,23 @@
 #include<iostream>
-//#include <limits>
+#include <limits>
 #include <sstream>      // std::istringstream
-#include<stdexcept>
+//#include<stdexcept>
 using namespace std;
 
 #define upperLimit 200.0
 #define lowerLimit 1.0
-
 float validInput()
+
 {
     float x;
-    for (std::string line; std::getline(std::cin, line); ) {
-        std::istringstream lin(line);
-        if (lin >> x && (lin >> std::ws).eof()) {
+    for (string line; getline(cin, line); ) {
+        istringstream lin(line);
+        if (lin >> x && (lin >> ws).eof()) {
             return x;
         }
         cout << "Not a numeric value please enter again\n";
     }
-    throw std::runtime_error("reached end of input before getting a valid value!");
+    //throw runtime_error("reached end of input before getting a valid value!");
 }
 
 class triangle
@@ -32,7 +32,6 @@ class triangle
         /*float validInput()
         {
             float x;
-            cout<< flush;
             cin >> x;
             while(cin.fail())
             {
